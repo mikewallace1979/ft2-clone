@@ -98,6 +98,8 @@ int main(int argc, char *argv[])
 	SDL_SetHint("SDL_WINDOWS_NO_CLOSE_ON_ALT_F4", "1");
 #endif
 
+	SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0");
+
 #ifdef _WIN32
 #ifndef _MSC_VER
 	SetProcessDPIAware();

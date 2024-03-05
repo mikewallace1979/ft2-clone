@@ -397,14 +397,14 @@ static void handleSDLEvents(void)
 			/* The Echo tool in Smp. Ed. can take forever if abused, let
 			** mouse buttons/ESC/SIGTERM force-stop it.
 			*/
-			if (eventType == SDL_MOUSEBUTTONDOWN || eventType == SDL_QUIT ||
+			if (eventType == SDL_FINGERDOWN || eventType == SDL_MOUSEBUTTONDOWN || eventType == SDL_QUIT ||
 				(eventType == SDL_KEYUP && key == SDL_SCANCODE_ESCAPE))
 			{
 				handleEchoToolPanic();
 			}
 
 			// let certain mouse buttons or keyboard keys stop certain events
-			if (eventType == SDL_MOUSEBUTTONDOWN ||
+			if (eventType == SDL_FINGERDOWN || eventType == SDL_MOUSEBUTTONDOWN ||
 				(eventType == SDL_KEYDOWN && key != SDL_SCANCODE_MUTE &&
 				 key != SDL_SCANCODE_AUDIOMUTE && key != SDL_SCANCODE_VOLUMEDOWN &&
 				 key != SDL_SCANCODE_VOLUMEUP))
@@ -500,12 +500,20 @@ static void handleSDLEvents(void)
 		{
 			keyDownHandler(event.key.keysym.scancode, event.key.keysym.sym, event.key.repeat);
 		}
-		else if (event.type == SDL_MOUSEBUTTONUP)
+		else if (event.type == SDL_FINGERUP || event.type == SDL_MOUSEBUTTONUP)
 		{
+			if (event.type == SDL_FINGERUP) {
+				mouse.x = (int32_t)(event.tfinger.x * video.renderW * video.fMouseXMul);
+				mouse.y = (int32_t)(event.tfinger.y * video.renderH * video.fMouseYMul);
+			}
 			mouseButtonUpHandler(event.button.button);
 		}
-		else if (event.type == SDL_MOUSEBUTTONDOWN)
+		else if (event.type == SDL_FINGERDOWN || event.type == SDL_MOUSEBUTTONDOWN)
 		{
+			if (event.type == SDL_FINGERDOWN) {
+				mouse.x = (int32_t)(event.tfinger.x * video.renderW * video.fMouseXMul);
+				mouse.y = (int32_t)(event.tfinger.y * video.renderH * video.fMouseYMul);
+			}
 			mouseButtonDownHandler(event.button.button);
 		}
 

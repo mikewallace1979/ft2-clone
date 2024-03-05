@@ -311,7 +311,7 @@ int16_t okBox(int16_t type, const char *headline, const char *text, void (*check
 					}
 				}
 			}
-			else if (inputEvent.type == SDL_MOUSEBUTTONUP)
+			else if (inputEvent.type == SDL_MOUSEBUTTONUP || inputEvent.type == SDL_FINGERUP)
 			{
 				if (mouseButtonUpLogic(inputEvent.button.button))
 				{
@@ -326,7 +326,7 @@ int16_t okBox(int16_t type, const char *headline, const char *text, void (*check
 					mouse.lastUsedObjectType = OBJECT_NONE;
 				}
 			}
-			else if (inputEvent.type == SDL_MOUSEBUTTONDOWN)
+			else if (inputEvent.type == SDL_MOUSEBUTTONDOWN || inputEvent.type == SDL_FINGERDOWN)
 			{
 				if (mouseButtonDownLogic(inputEvent.button.button))
 				{
@@ -552,7 +552,7 @@ int16_t inputBox(int16_t type, const char *headline, char *edText, uint16_t maxS
 					}
 				}
 			}
-			else if (inputEvent.type == SDL_MOUSEBUTTONUP)
+			else if (inputEvent.type == SDL_MOUSEBUTTONUP || inputEvent.type == SDL_FINGERUP)
 			{
 				if (mouseButtonUpLogic(inputEvent.button.button))
 				{
@@ -564,7 +564,7 @@ int16_t inputBox(int16_t type, const char *headline, char *edText, uint16_t maxS
 					mouse.lastUsedObjectType = OBJECT_NONE;
 				}
 			}
-			else if (inputEvent.type == SDL_MOUSEBUTTONDOWN)
+			else if (inputEvent.type == SDL_MOUSEBUTTONDOWN || inputEvent.type == SDL_FINGERDOWN)
 			{
 				if (mouseButtonDownLogic(inputEvent.button.button))
 				{
