@@ -313,6 +313,9 @@ int16_t okBox(int16_t type, const char *headline, const char *text, void (*check
 			}
 			else if (inputEvent.type == SDL_MOUSEBUTTONUP || inputEvent.type == SDL_FINGERUP)
 			{
+				if (inputEvent.type == SDL_FINGERUP) {
+					readMouseXYFromTFinger(inputEvent);
+				}
 				if (mouseButtonUpLogic(inputEvent.button.button))
 				{
 					if (hasCheckbox)
@@ -328,6 +331,9 @@ int16_t okBox(int16_t type, const char *headline, const char *text, void (*check
 			}
 			else if (inputEvent.type == SDL_MOUSEBUTTONDOWN || inputEvent.type == SDL_FINGERDOWN)
 			{
+				if (inputEvent.type == SDL_FINGERDOWN) {
+					readMouseXYFromTFinger(inputEvent);
+				}
 				if (mouseButtonDownLogic(inputEvent.button.button))
 				{
 					if (testPushButtonMouseDown()) continue;
@@ -554,6 +560,9 @@ int16_t inputBox(int16_t type, const char *headline, char *edText, uint16_t maxS
 			}
 			else if (inputEvent.type == SDL_MOUSEBUTTONUP || inputEvent.type == SDL_FINGERUP)
 			{
+				if (inputEvent.type == SDL_FINGERUP) {
+					readMouseXYFromTFinger(inputEvent);
+				}
 				if (mouseButtonUpLogic(inputEvent.button.button))
 				{
 					returnVal = testPushButtonMouseRelease(false) + 1;
@@ -566,6 +575,9 @@ int16_t inputBox(int16_t type, const char *headline, char *edText, uint16_t maxS
 			}
 			else if (inputEvent.type == SDL_MOUSEBUTTONDOWN || inputEvent.type == SDL_FINGERDOWN)
 			{
+				if (inputEvent.type == SDL_FINGERDOWN) {
+					readMouseXYFromTFinger(inputEvent);
+				}
 				if (mouseButtonDownLogic(inputEvent.button.button))
 				{
 					if (testTextBoxMouseDown()) continue;
