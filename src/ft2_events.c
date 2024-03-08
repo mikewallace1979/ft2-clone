@@ -503,16 +503,14 @@ static void handleSDLEvents(void)
 		else if (event.type == SDL_FINGERUP || event.type == SDL_MOUSEBUTTONUP)
 		{
 			if (event.type == SDL_FINGERUP) {
-				mouse.x = (int32_t)(event.tfinger.x * video.renderW * video.fMouseXMul);
-				mouse.y = (int32_t)(event.tfinger.y * video.renderH * video.fMouseYMul);
+				readMouseXYFromTFinger(event);
 			}
 			mouseButtonUpHandler(event.button.button);
 		}
 		else if (event.type == SDL_FINGERDOWN || event.type == SDL_MOUSEBUTTONDOWN)
 		{
 			if (event.type == SDL_FINGERDOWN) {
-				mouse.x = (int32_t)(event.tfinger.x * video.renderW * video.fMouseXMul);
-				mouse.y = (int32_t)(event.tfinger.y * video.renderH * video.fMouseYMul);
+				readMouseXYFromTFinger(event);
 			}
 			mouseButtonDownHandler(event.button.button);
 		}

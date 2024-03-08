@@ -49,3 +49,4 @@ void animateBusyMouse(void);
 void handleLastGUIObjectDown(void);
 void readMouseXY(void);
 void resetMouseBusyAnimation(void);
+void readMouseXYFromTFinger(SDL_Event event);

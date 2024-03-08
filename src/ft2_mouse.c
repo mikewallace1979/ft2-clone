@@ -922,3 +922,8 @@ void readMouseXY(void)
 
 	changeCursorIfOverTextBoxes();
 }
+
+void  readMouseXYFromTFinger(SDL_Event event) {
+	mouse.x = (int32_t)(event.tfinger.x * video.renderW * video.fMouseXMul);
+	mouse.y = (int32_t)(event.tfinger.y * video.renderH * video.fMouseYMul);
+}
