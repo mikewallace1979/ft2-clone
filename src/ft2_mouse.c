@@ -583,6 +583,18 @@ static bool testPatternDataMouseDown(void)
 	return false;
 }
 
+// One touch, always left, YOLO
+void fingerUpHandler()
+{
+	mouseButtonUpHandler(SDL_BUTTON_LEFT);
+}
+
+void fingerDownHandler()
+{
+	mouseButtonDownHandler(SDL_BUTTON_LEFT);
+}
+// End of YOLO
+
 void mouseButtonUpHandler(uint8_t mouseButton)
 {
 	if (mouseButton == SDL_BUTTON_LEFT)
@@ -902,6 +914,20 @@ void readMouseXY(void)
 			// convert fullscreen coords to window (centered image) coords
 			mx -= video.renderX;
 			my -= video.renderY;
+		}
+	}
+
+	// Great hacks! Override mx and my if there is a touch finger.
+	int numDevices = SDL_GetNumTouchDevices();
+
+	for (int i = 0; i < numDevices; ++i) {
+		SDL_TouchID touchID = SDL_GetTouchDevice(0); // Assuming single touch device
+		int fingerIndex = 0; // Assuming interested in the first finger
+
+		SDL_Finger *touch = SDL_GetTouchFinger(touchID, fingerIndex);
+		if (touch) {
+			mx = (int32_t)(touch->x * video.renderW);
+			my = (int32_t)(touch->y * video.renderH);
 		}
 	}
 

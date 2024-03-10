@@ -504,6 +504,7 @@ static void handleSDLEvents(void)
 		{
 			if (event.type == SDL_FINGERUP) {
 				readMouseXYFromTFinger(event);
+				fingerUpHandler();
 			}
 			mouseButtonUpHandler(event.button.button);
 		}
@@ -511,6 +512,7 @@ static void handleSDLEvents(void)
 		{
 			if (event.type == SDL_FINGERDOWN) {
 				readMouseXYFromTFinger(event);
+				fingerDownHandler();
 			}
 			mouseButtonDownHandler(event.button.button);
 		}

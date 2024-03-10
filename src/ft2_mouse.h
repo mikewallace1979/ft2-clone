@@ -41,6 +41,8 @@ void setMouseMode(uint8_t mode);
 void mouseWheelHandler(bool directionUp);
 void mouseButtonUpHandler(uint8_t mouseButton);
 void mouseButtonDownHandler(uint8_t mouseButton);
+void fingerUpHandler();
+void fingerDownHandler();
 void updateMouseScaling(void);
 void setMouseBusy(bool busy); // can be called from other threads
 void mouseAnimOn(void);
