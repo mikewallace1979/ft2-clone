@@ -2428,7 +2428,7 @@ bool testInstrVolEnvMouseDown(bool mouseButtonDown)
 			const int32_t x = 8 + ins->volEnvPoints[i][0];
 			const int32_t y = 190 + (64 - ins->volEnvPoints[i][1]);
 
-			if (mx >= x-2 && mx <= x+2 && my >= y-2 && my <= y+2)
+			if (mx >= x-4 && mx <= x+4 && my >= y-4 && my <= y+4)
 			{
 				editor.currVolEnvPoint = i;
 				mouse.lastUsedObjectType = OBJECT_INSVOLENV;
@@ -2525,7 +2525,7 @@ bool testInstrPanEnvMouseDown(bool mouseButtonDown)
 			const int32_t x = 8 + ins->panEnvPoints[i][0];
 			const int32_t y = 277 + (63 - ins->panEnvPoints[i][1]);
 
-			if (mx >= x-2 && mx <= x+2 && my >= y-2 && my <= y+2)
+			if (mx >= x-4 && mx <= x+4 && my >= y-4 && my <= y+4)
 			{
 				editor.currPanEnvPoint = i;
 				mouse.lastUsedObjectType = OBJECT_INSPANENV;
